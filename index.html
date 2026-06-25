@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Sprungbrett</title>
+  <meta name="description" content="Café Sprungbrett ist ein fiktives Sprachcafé und Informationsangebot für geflüchtete Menschen mit Fokus auf Begegnung, Orientierung und Weitervermittlung.">
+  <meta property="og:title" content="Café Sprungbrett">
+  <meta property="og:description" content="Sprachcafé und Information für geflüchtete Menschen.">
+  <meta property="og:type" content="website">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=boska@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --color-bg: #f7f6f2;
+      --color-surface: #f9f8f5;
+      --color-surface-2: #fbfbf9;
+      --color-surface-offset: #edeae5;
+      --color-border: #d4d1ca;
+      --color-text: #28251d;
+      --color-text-muted: #6f6d67;
+      --color-text-inverse: #f9f8f4;
+      --color-primary: #0c6b73;
+      --color-primary-hover: #084b51;
+      --color-accent: #d9a01b;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 10px 30px rgba(0,0,0,.08);
+      --content: 1100px;
+      --font-body: 'Satoshi', Arial, sans-serif;
+      --font-display: 'Boska', Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614;
+      --color-surface: #1c1b19;
+      --color-surface-2: #201f1d;
+      --color-surface-offset: #2a2825;
+      --color-border: #393836;
+      --color-text: #ece7dd;
+      --color-text-muted: #b3aea3;
+      --color-text-inverse: #171614;
+      --color-primary: #58a5ad;
+      --color-primary-hover: #78bcc3;
+      --color-accent: #efbb43;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+      --shadow-md: 0 12px 32px rgba(0,0,0,.35);
+    }
+    *,:before,:after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;background:var(--color-bg);color:var(--color-text)}
+    img,svg{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;border:none;background:none;cursor:pointer}
+    .skip-link{position:absolute;left:-9999px;top:auto}
+    .skip-link:focus{left:1rem;top:1rem;background:var(--color-primary);color:var(--color-text-inverse);padding:.75rem 1rem;border-radius:var(--radius-md);z-index:1000}
+    .container{width:min(calc(100% - 2rem),var(--content));margin-inline:auto}
+    .header{position:sticky;top:0;z-index:40;background:rgba(247,246,242,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(40,37,29,.08)}
+    [data-theme="dark"] .header{background:rgba(23,22,20,.86);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) 0;gap:var(--space-4)}
+    .brand{display:flex;align-items:center;gap:var(--space-3);font-weight:700}
+    .brand svg{width:40px;height:40px;color:var(--color-primary)}
+    .brand-name{display:flex;flex-direction:column}
+    .brand-name strong{font-size:var(--text-sm)}
+    .brand-name span{font-size:var(--text-xs);color:var(--color-text-muted)}
+    .nav-links{display:none;gap:var(--space-5);font-size:var(--text-sm);color:var(--color-text-muted)}
+    .theme-toggle{width:44px;height:44px;border-radius:var(--radius-full);background:var(--color-surface);border:1px solid rgba(40,37,29,.08);display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+    .hero{padding:clamp(4rem,10vw,7rem) 0 var(--space-16)}
+    .hero-grid{display:grid;gap:var(--space-10);align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-radius:var(--radius-full);background:rgba(12,107,115,.1);color:var(--color-primary);font-size:var(--text-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .hero h1{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.02;max-width:10ch;margin-top:var(--space-5)}
+    .hero p{margin-top:var(--space-5);max-width:58ch;color:var(--color-text-muted)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.9rem 1.2rem;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:700}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse)}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{border:1px solid rgba(40,37,29,.12);background:var(--color-surface)}
+    .hero-card{background:linear-gradient(180deg,var(--color-surface-2),var(--color-surface));border:1px solid rgba(40,37,29,.08);border-radius:28px;padding:var(--space-6);box-shadow:var(--shadow-md);overflow:hidden}
+    .illustration{aspect-ratio:4/3;border-radius:22px;background:linear-gradient(135deg,#f7d56c 0%,#f3e6b7 45%,#b9dfe3 100%);position:relative;overflow:hidden}
+    .blob,.blob2,.blob3{position:absolute;border-radius:50%}
+    .blob{width:180px;height:180px;background:rgba(12,107,115,.18);top:-25px;right:-25px}
+    .blob2{width:140px;height:140px;background:rgba(255,255,255,.45);bottom:18px;left:16px}
+    .blob3{width:90px;height:90px;background:rgba(217,160,27,.28);bottom:28px;right:38px}
+    .people{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:1rem;padding:1.5rem}
+    .person{width:72px;height:150px;position:relative}
+    .person .head{width:38px;height:38px;border-radius:50%;background:#f1c7a5;margin:0 auto}
+    .person .body{width:72px;height:100px;border-radius:22px 22px 12px 12px;margin-top:.5rem}
+    .p1 .body{background:#0c6b73}.p2 .body{background:#d9a01b}.p3 .body{background:#6f7ec9}.p4 .body{background:#3d8458}
+    .speech{position:absolute;top:20px;left:18px;background:white;color:#333;padding:.5rem .75rem;border-radius:20px;font-size:12px;box-shadow:var(--shadow-sm)}
+    .speech.two{left:auto;right:18px;top:52px}
+    section{padding:clamp(3.5rem,7vw,5.5rem) 0}
+    .section-head{display:grid;gap:var(--space-3);margin-bottom:var(--space-8)}
+    .section-head h2{font-family:var(--font-display);font-size:var(--text-xl)}
+    .section-head p{color:var(--color-text-muted);max-width:62ch}
+    .cards{display:grid;gap:var(--space-4)}
+    .card{background:var(--color-surface);border:1px solid rgba(40,37,29,.08);border-radius:24px;padding:var(--space-5);box-shadow:var(--shadow-sm)}
+    .card h3{font-size:var(--text-lg);margin-bottom:.5rem}
+    .card p{color:var(--color-text-muted)}
+    .icon{width:46px;height:46px;border-radius:14px;background:rgba(12,107,115,.1);display:grid;place-items:center;color:var(--color-primary);margin-bottom:var(--space-4)}
+    .split{display:grid;gap:var(--space-6)}
+    .quote{background:var(--color-primary);color:var(--color-text-inverse);border-radius:28px;padding:var(--space-8)}
+    .quote p{font-family:var(--font-display);font-size:clamp(1.6rem,2vw,2.2rem);line-height:1.15;max-width:16ch}
+    .quote small{display:block;margin-top:var(--space-4);opacity:.8;font-size:var(--text-sm)}
+    .pill-list{display:flex;flex-wrap:wrap;gap:var(--space-3)}
+    .pill{padding:.8rem 1rem;border-radius:var(--radius-full);background:var(--color-surface-offset);font-size:var(--text-sm);font-weight:600}
+    .location{display:grid;gap:var(--space-4);background:linear-gradient(180deg,var(--color-surface),var(--color-surface-2));border-radius:28px;padding:var(--space-8);border:1px solid rgba(40,37,29,.08)}
+    .mini{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .footer{padding:var(--space-8) 0 var(--space-12);border-top:1px solid rgba(40,37,29,.08)}
+    .footer-wrap{display:flex;flex-direction:column;gap:var(--space-4)}
+    .note{font-size:var(--text-xs);color:var(--color-text-muted);max-width:70ch}
+    @media (min-width: 800px){
+      .nav-links{display:flex}
+      .hero-grid{grid-template-columns:1.05fr .95fr}
+      .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .split{grid-template-columns:1fr .95fr;align-items:start}
+      .footer-wrap{flex-direction:row;justify-content:space-between;align-items:flex-end}
+    }
+    @media (min-width: 1024px){
+      .cards.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#start" aria-label="Café Sprungbrett Startseite">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Café Sprungbrett">
+          <path d="M18 22h22a10 10 0 0 1 0 20H22a8 8 0 0 1-8-8v-4a8 8 0 0 1 8-8Z" stroke="currentColor" stroke-width="4"/>
+          <path d="M40 26h6a7 7 0 1 1 0 14h-4" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M22 48c4 4 16 4 20 0" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M24 16c0-4 4-5 4-9M34 16c0-4 4-5 4-9" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name"><strong>Café Sprungbrett</strong><span>Sprachcafé & Information</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#angebote">Angebote</a>
+        <a href="#fuerwen">Für wen</a>
+        <a href="#werte">Werte</a>
+        <a href="#ort">Ort</a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle aria-label="Farbschema wechseln">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="start">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Integrationsnetzwerk für geflüchtete Menschen</span>
+          <h1>Ankommen. Verstehen. Weiterkommen.</h1>
+          <p>Café Sprungbrett ist ein fiktives ehrenamtliches Sprachcafé und Informationsangebot für geflüchtete Menschen. Die Website greift typische Funktionen von Sprachcafés auf: Begegnung, Sprachpraxis, Orientierung im Alltag und die Weitervermittlung an passende Unterstützungsangebote [web:70][web:71][web:78].</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#angebote">Angebote ansehen</a>
+            <a class="btn btn-secondary" href="#ort">Standort</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="illustration" aria-hidden="true">
+            <div class="blob"></div>
+            <div class="blob2"></div>
+            <div class="blob3"></div>
+            <div class="speech">Sprache üben</div>
+            <div class="speech two">Hilfe finden</div>
+            <div class="people">
+              <div class="person p1"><div class="head"></div><div class="body"></div></div>
+              <div class="person p2"><div class="head"></div><div class="body"></div></div>
+              <div class="person p3"><div class="head"></div><div class="body"></div></div>
+              <div class="person p4"><div class="head"></div><div class="body"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="angebote">
+      <div class="container">
+        <div class="section-head">
+          <h2>Unsere Angebote</h2>
+          <p>Café Sprungbrett verbindet ein offenes Sprachcafé mit niedrigschwelliger Orientierung. Vergleichbare Angebote werden als Begegnungsorte beschrieben, in denen Menschen Deutsch üben, Kontakte knüpfen und alltagsnahe Informationen erhalten können [web:13][web:70][web:74].</p>
+        </div>
+        <div class="cards three">
+          <article class="card">
+            <div class="icon">☕</div>
+            <h3>Sprachcafé</h3>
+            <p>Alltagsnahes Deutsch üben, Gespräche führen und Sicherheit in der Sprache gewinnen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">➜</div>
+            <h3>Weitervermittlung</h3>
+            <p>Erste Orientierung und Hinweise auf passende Beratungs- und Unterstützungsangebote.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Begegnung</h3>
+            <p>Ein offener Treffpunkt für Austausch, Kontakte und gegenseitige Unterstützung im Alltag.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fuerwen">
+      <div class="container split">
+        <div>
+          <div class="section-head">
+            <h2>Für wen ist Café Sprungbrett da?</h2>
+            <p>Das Angebot richtet sich an geflüchtete Menschen sowie an Personen, die durch Sprache, Orientierungslosigkeit oder fehlende Zugänge zu Hilfen Unterstützung brauchen. Ehrenamtliche Geflüchtetenarbeit wird dabei als wichtiger Baustein für Teilhabe und Integration beschrieben [web:34][web:38].</p>
+          </div>
+          <div class="pill-list">
+            <span class="pill">Geflüchtete Menschen</span>
+            <span class="pill">Menschen mit Sprachbarrieren</span>
+            <span class="pill">Familien</span>
+            <span class="pill">Schwangere</span>
+            <span class="pill">Menschen mit Orientierungsbedarf</span>
+          </div>
+        </div>
+        <aside class="quote">
+          <p>Ein sicherer Ort, an dem Fragen erlaubt sind und der nächste Schritt klarer wird.</p>
+          <small>Fiktives Projektprofil für ein Planspiel im Bereich Integration.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section id="werte">
+      <div class="container">
+        <div class="section-head">
+          <h2>Wofür das Café steht</h2>
+          <p>Das Café versteht sich als Brücke zwischen Menschen und dem Hilfesystem. In der Praxis werden Sprachcafés und ehrenamtliche Unterstützungsangebote häufig mit Offenheit, Teilhabe, Vertrauensaufbau und sozialer Orientierung verbunden [web:15][web:34].</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Offen und niedrigschwellig</h3>
+            <p>Das Angebot soll leicht zugänglich sein und ohne Hemmschwelle genutzt werden können.</p>
+          </article>
+          <article class="card">
+            <h3>Verlässlich und respektvoll</h3>
+            <p>Menschen sollen ernst genommen, verständlich informiert und bei Bedarf weitergeleitet werden.</p>
+          </article>
+          <article class="card">
+            <h3>Teil einer Zusammenarbeit</h3>
+            <p>Integration gelingt besser, wenn ehrenamtliche und professionelle Akteure ihre Angebote sinnvoll vernetzen [web:32][web:38].</p>
+          </article>
+          <article class="card">
+            <h3>Stärkung im Alltag</h3>
+            <p>Das Ziel ist nicht nur Information, sondern mehr Sicherheit, Orientierung und soziale Teilhabe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ort">
+      <div class="container">
+        <div class="location">
+          <span class="eyebrow">Standort</span>
+          <h2 style="font-family: var(--font-display); font-size: var(--text-xl);">Reemastraße 42, Neustadt</h2>
+          <p class="mini">Diese Beispielseite ist für ein fiktives Projekt erstellt. Die Adresse wird hier als Teil des Planspiels dargestellt.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#start">Zurück nach oben</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>
+        <strong>Café Sprungbrett</strong>
+        <p class="mini">Sprachcafé und Information für geflüchtete Menschen</p>
+      </div>
+      <p class="note">Diese Website ist als fiktive Projektseite für ein Hochschul-Planspiel gedacht. Inhalte und Struktur orientieren sich an typischen Sprachcafé- und Integrationsangeboten in Deutschland [web:13][web:34][web:70].</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const button = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      const render = () => {
+        button.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      };
+      render();
+      button.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        render();
+      });
+    })();
+  </script>
+</body>
+</html>
